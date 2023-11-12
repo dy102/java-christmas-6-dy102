@@ -25,7 +25,7 @@ public class Controller {
         EventParameter eventParameter = new EventParameter(visitDate, userMenu, totalPrice);
         EventPrice eventPrice = new EventPrice(eventParameter);
         EventManager eventManager = new EventManager(eventPrice);
-        eventManager.collectAllEvent();
+        eventManager.collectAllEvent(totalPrice);
 
         List<String> appliedEvent = eventPrice.getAppliedEvent();
         List<Integer> appliedPrice = eventPrice.getAppliedPrice();

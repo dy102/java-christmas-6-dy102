@@ -1,7 +1,6 @@
 package christmas.domain;
 
 import christmas.domain.event.Event;
-import christmas.domain.event.GiveEvent;
 import christmas.option.EventName;
 
 import java.util.ArrayList;
@@ -21,27 +20,26 @@ public class EventPrice {
     }
 
     public void checkDiscount(Event event) {
-        if (eventParameter.totalPrice().price() < 10000) {
-            return;
-        }
         if (event.isApply(eventParameter.visitDate().date())) {
             appliedEvent.add(EventName.of(event).getName());
-            appliedPrice.add(event.apply(eventParameter));
+            int price = event.apply(eventParameter);
+            appliedPrice.add(price);
 
-            discountPrice += event.apply(eventParameter);
+            discountPrice += price;
         }
     }
 
     public void checkGiveService(Event event) {
         if (event.isApply(eventParameter.totalPrice().price())) {
             appliedEvent.add(EventName.of(event).getName());
-            appliedPrice.add(event.apply(eventParameter));
+            int price = event.apply(eventParameter);
+            appliedPrice.add(price);
 
-            servicePrice += event.apply(eventParameter);
+            servicePrice += price;
         }
     }
 
-    public int getTotalEventPrice(){
+    public int getTotalEventPrice() {
         return discountPrice + servicePrice;
     }
 

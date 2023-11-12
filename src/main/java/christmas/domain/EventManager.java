@@ -1,7 +1,6 @@
 package christmas.domain;
 
 import christmas.domain.event.Event;
-import christmas.domain.event.GiveAwayEvent;
 import christmas.domain.event.GiveEvent;
 import christmas.option.EventName;
 
@@ -13,7 +12,10 @@ public class EventManager {//클래스명 변경 고려
         this.eventPrice = eventPrice;
     }
 
-    public void collectAllEvent() {
+    public void collectAllEvent(TotalPrice totalPrice) {
+        if (totalPrice.price() < 10000) {//어디에 넘길지 고민좀..
+            return;
+        }
         EventName[] events = EventName.values();
         for (EventName event : events) {
             calculatePrice(event);
