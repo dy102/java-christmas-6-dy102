@@ -8,6 +8,7 @@ import java.util.stream.IntStream;
 
 import static christmas.option.Error.ILLEGAL_ORDER;
 import static christmas.option.Error.NOT_ONLY_DRINK;
+import static christmas.option.Error.NOT_OVER_TWENTY;
 
 public class UserMenu {
     private final List<String> menuNames;
@@ -18,6 +19,8 @@ public class UserMenu {
         this.menuCount = menuCount;
         validateDuplication();
         validateisExistMenu();
+        validateCount();
+        validateCounts();
         validateOnlyDrink();
     }
 
@@ -43,6 +46,21 @@ public class UserMenu {
         return menuNames.stream()
                 .distinct()
                 .count() != menuNames.size();
+    }
+
+    public void validateCount(){
+        for(int i = 0; i < menuCount.size(); i++){
+            if(menuCount.get(i)<1){
+                throw new IllegalArgumentException(ILLEGAL_ORDER.getMessage());
+            }
+        }
+    }
+
+    public void validateCounts(){
+        int totalCount = menuCount.stream().mapToInt(Integer::intValue).sum();
+        if(totalCount>20){
+            throw new IllegalArgumentException(NOT_OVER_TWENTY.getMessage());
+        }
     }
 
     public void validateOnlyDrink() {
