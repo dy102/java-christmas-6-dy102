@@ -1,9 +1,8 @@
 package christmas.domain;
 
 import christmas.option.Menu;
+import christmas.view.Converter;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -11,41 +10,26 @@ import static christmas.option.Error.ILLEGAL_ORDER;
 import static christmas.option.Error.NOT_ONLY_DRINK;
 
 public class UserMenu {
-    private final List<String> orders;
-    private final List<String> menuNames = new ArrayList<>();
-    private final List<Integer> menuCount = new ArrayList<>();
+    private final List<String> menuNames;
+    private final List<Integer> menuCount;
 
-    public UserMenu(List<String> orders) {
-        this.orders = orders;
-        setMenuNames();
-        setMenuCount();
+    private UserMenu(List<String> menuNames, List<Integer> menuCount) {
+        this.menuNames = menuNames;
+        this.menuCount = menuCount;
         validateDuplication();
         validateisExistMenu();
         validateOnlyDrink();
     }
 
+    public static UserMenu form(List<String> orders){
+        List<String> menuNames = Converter.orderToMenuNames(orders);
+        List<Integer> menuCount = Converter.orderToMenuCount(orders);
+        return new UserMenu(menuNames,menuCount);
+    }
+
     public void validateisExistMenu() {
-        for (int i = 0; i < orders.size(); i++) {
+        for (int i = 0; i < menuNames.size(); i++) {
             Menu.of(menuNames.get(i));
-        }
-    }
-
-    private void setMenuNames() {
-        for (String order : orders) {
-            Arrays.stream(order.split("-")).findFirst().ifPresent(menuNames::add); //Converter역할 고려
-            //비었는지 안비었는지 검증필요
-        }
-    }
-
-    private void setMenuCount() {
-        for (String order : orders) {
-            List<String> splitOrder = Arrays.stream(order.split("-")).toList();
-            try {
-                menuCount.add(Integer.parseInt(splitOrder.get(1)));
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(ILLEGAL_ORDER.getMessage());
-            }
-            //비었는지 안비었는지 검증필요 //count 검증과정 필요함.
         }
     }
 
