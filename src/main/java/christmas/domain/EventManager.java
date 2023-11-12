@@ -33,11 +33,11 @@ public class EventManager {//클래스명 변경 고려
         calculateDiscountPrice(event.getEvent());
     }
 
-    public void calculateDiscountPrice(Event event) {
+    private void calculateDiscountPrice(Event event) {
         eventPrice.checkDiscount(event);
     }
 
-    public void calculateServicePrice(Event giveEvent) {
+    private void calculateServicePrice(Event giveEvent) {
         eventPrice.checkGiveService(giveEvent);
     }
 }
