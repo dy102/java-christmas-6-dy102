@@ -19,7 +19,7 @@
 - 주문 메뉴와 개수 입력받기(e.g. 해산물 파스타-2,레드와인-1,초코케이크-1)
     - 예외 : 메뉴의 개수가 1이상이 아닌 경우
     - 예외 : 없는 메뉴를 주문한 경우
-    - 예외 : 메뉴 형식이 예시와 다른 경우
+    - 예외 : 메뉴 형식이 예시와 다른 경우 -> 따로 검증이 필요한가? 나중에 확인 필요**
     - 에외 : 중복 메뉴를 입력한 경우
 
     - 예외 : 메뉴 개수의 총 합이 20을 초과한 경우
@@ -68,3 +68,53 @@
 - Menu : 메뉴판 enum
 - Error : 에러메시지 enum
 - EventName : 이벤트명 및 해당 이벤트 인스턴스를 가진 enum
+
+## 테스트 목록
+
+### controller
+
+- [x] Controller
+
+---
+
+### domain
+
+#### Event
+
+- [x] DDayEventTest
+- [x] GiveAwayEventTest
+- [x] SpecialEventTest
+- [x] WeekdayEventTest
+- [x] WeekendEventTest
+
+---
+
+- [x] BadgeTest
+- [x] EventManagerTest
+- EventParameterTest (X)
+- [x] EventPriceTest
+- [x] TotalPriceTest
+- [x] UserMenuTest
+- [x] VisitDateTest
+
+---
+
+### validator
+
+- [x] UserMenuValidatorTest
+
+---
+
+### option
+
+- ErrorTest (X)
+- [x] EventNameTest
+- [x] MenuTest
+
+---
+
+### view
+
+- [x] ConverterTest
+- InputTest (X)
+- [x] OutputTest
