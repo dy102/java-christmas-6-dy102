@@ -12,7 +12,7 @@ public class GiveAwayEvent implements Event, GiveEvent {
     }
 
     public boolean isApply(int price) {
-        if (price > 120000) {
+        if (price >= 120000) {
             return true;
         }
         return false;
