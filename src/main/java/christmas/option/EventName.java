@@ -9,8 +9,6 @@ import christmas.domain.event.WeekendEvent;
 
 import java.util.Arrays;
 
-import static christmas.option.Error.ILLEGAL_ORDER;
-
 public enum EventName {
     WEEKDAY_EVENT("평일 할인", new WeekdayEvent()),
     WEEKEND_EVENT("주말 할인", new WeekendEvent()),
@@ -38,6 +36,6 @@ public enum EventName {
         return Arrays.stream(values())
                 .filter(v -> event.getClass() == v.event.getClass())
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(ILLEGAL_ORDER.getMessage()));
+                .orElseThrow(() -> new NullPointerException("존재하지 않는 이벤트 클래스입니다."));
     }
 }
