@@ -5,7 +5,8 @@ import christmas.domain.EventParameter;
 import java.util.List;
 
 public class WeekendEvent implements Event {
-    private final List<Integer> weekends = List.of(1, 2, 8, 9, 15, 16, 22, 23, 29, 30);
+    private final List<Integer> weekends =
+            List.of(1, 2, 8, 9, 15, 16, 22, 23, 29, 30);
 
     @Override
     public int apply(EventParameter eventParameter) {
