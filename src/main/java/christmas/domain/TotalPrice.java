@@ -20,14 +20,6 @@ public class TotalPrice {
         return price;
     }
 
-    public boolean isLessThanOne() {
-        return price < 10000;
-    }
-
-    public boolean isMoreThanTwelve() {
-        return price >= 120000;
-    }
-
     public int price() {
         return price;
     }
