@@ -36,7 +36,7 @@ public class Controller {
 
         Badge badge = new Badge();
         badge.setName(totalEventService);
-
+//print용 DTO같은 걸 만들거나. 매개변수를 좀 다르게 해보던가.
         printIntroduction(visitDate);
 
         printOrderMenu(userMenu);
@@ -90,7 +90,7 @@ public class Controller {
 
     private void printGiveMenu(List<String> appliedEvent, int price) {
         Output.message(Output.GIVE_AWAY_MENU);
-        Output.giveMenu(appliedEvent, price);
+        Output.giveMenu(appliedEvent);
     }
 
     private void printAppliedEvents(List<String> appliedEvent, List<Integer> appliedPrice) {

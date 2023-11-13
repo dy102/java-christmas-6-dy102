@@ -16,7 +16,7 @@ public class Output {
     public static final String TOTAL_PRICE_AFTER_DISCOUNT = "<할인 후 예상 결제 금액>";
     public static final String BADGE = "<12월 이벤트 배지>";
 
-    public static DecimalFormat format = new DecimalFormat("###,###,###,###");
+    private static final DecimalFormat format = new DecimalFormat("###,###,###,###");
 
     private Output() {
     }
@@ -47,11 +47,11 @@ public class Output {
 
     public static void price(int price) {
         DecimalFormat format = new DecimalFormat("###,###,###,###");
-        System.out.println(format.format(price)+"원");
+        System.out.println(format.format(price) + "원");
         System.out.println();
     }
 
-    public static void giveMenu(List<String> appliedEvent, int price) {
+    public static void giveMenu(List<String> appliedEvent) {
         if (appliedEvent.contains(GIVE_AWAY_EVENT.getName())) { //상수관리필요
             System.out.println("샴페인 1개");
             System.out.println();
@@ -65,12 +65,12 @@ public class Output {
         System.out.print(eventName.getName() + ": ");
         for (int i = 0; i < appliedEvent.size(); i++) {
             if (appliedEvent.get(i).equals(eventName.getName())) {
-                System.out.println(format.format(appliedPrice.get(i)));
+                System.out.println(format.format(appliedPrice.get(i)) + "원");
             }
         }
     }
 
-    public static void lineBreak(){
+    public static void lineBreak() {
         System.out.println();
     }
 }
