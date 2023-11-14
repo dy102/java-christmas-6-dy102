@@ -20,6 +20,10 @@ public class EventPrice {
     }
 
     public void checkDiscount(Event event) {
+        if (eventParameter.totalPrice().price() < 10000) {//어디에 넘길지 고민좀..
+            return;
+        }
+
         if (event.isApply(eventParameter.visitDate().date())) {
             appliedEvent.add(EventName.of(event).getName());
             int price = event.apply(eventParameter);

@@ -20,7 +20,7 @@ class EventManagerTest {
         EventPrice eventPrice = new EventPrice(eventParameter);
         EventManager eventManager = new EventManager(eventPrice);
 
-        eventManager.collectAllEvent(totalPrice);
+        eventManager.collectAllEvent();
 
         assertThat(eventPrice.getTotalEventPrice()).isEqualTo(-31_246);
     }
