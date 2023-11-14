@@ -24,34 +24,12 @@ public class Controller {
 
         EventParameter eventParameter = new EventParameter(visitDate, userMenu, totalPrice);
         EventPrice eventPrice = new EventPrice(eventParameter);
-        EventManager eventManager = new EventManager(eventPrice);
-        eventManager.collectAllEvent(totalPrice);
-
-        List<String> appliedEvent = eventPrice.getAppliedEvent();
-        List<Integer> appliedPrice = eventPrice.getAppliedPrice();
-
-        int totalPriceBeforeDiscount = totalPrice.price();
-        int totalEventService = eventPrice.getTotalEventPrice();
-        int totalPriceAfterDiscount = totalPrice.applyDiscount(eventPrice.getDiscountPrice());
+        applyTotalEvent(eventPrice);
 
         Badge badge = new Badge();
-        badge.setName(totalEventService);
-//print용 DTO같은 걸 만들거나. 매개변수를 좀 다르게 해보던가.
-        printIntroduction(visitDate);
+        badge.setName(eventPrice.getTotalEventPrice());
 
-        printOrderMenu(userMenu);
-
-        printTotalPriceBeforeDisCount(totalPriceBeforeDiscount);
-
-        printGiveMenu(appliedEvent, totalPriceBeforeDiscount);
-
-        printAppliedEvents(appliedEvent, appliedPrice);
-
-        printTotalEventPrice(totalEventService);
-
-        printTotalPriceAfterDiscount(totalPriceAfterDiscount);
-
-        printBadge(badge);
+        printEventPreview(eventParameter, eventPrice, badge);
     }
 
     private VisitDate setVisitDate() {
@@ -74,6 +52,28 @@ public class Controller {
         }
     }
 
+    private void applyTotalEvent(EventPrice eventPrice) {
+        EventManager eventManager = new EventManager(eventPrice);
+        eventManager.collectAllEvent();
+    }
+
+    private void printEventPreview(EventParameter eventParameter, EventPrice eventPrice, Badge badge) {
+        List<String> appliedEvent = eventPrice.getAppliedEvent();
+        List<Integer> appliedPrice = eventPrice.getAppliedPrice();
+        int totalPriceBeforeDiscount = eventParameter.totalPrice().price();
+        int totalEventService = eventPrice.getTotalEventPrice();
+        int totalPriceAfterDiscount = eventParameter.totalPrice().applyDiscount(eventPrice.getDiscountPrice());
+
+        printIntroduction(eventParameter.visitDate());
+        printOrderMenu(eventParameter.userMenu());
+        printTotalPriceBeforeDisCount(totalPriceBeforeDiscount);
+        printGiveMenu(appliedEvent);
+        printAppliedEvents(appliedEvent, appliedPrice);
+        printTotalEventPrice(totalEventService);
+        printTotalPriceAfterDiscount(totalPriceAfterDiscount);
+        printBadge(badge);
+    }
+
     private void printIntroduction(VisitDate visitDate) {
         Output.eventIntroduction(visitDate.date());
     }
@@ -88,7 +88,7 @@ public class Controller {
         Output.price(price);
     }
 
-    private void printGiveMenu(List<String> appliedEvent, int price) {
+    private void printGiveMenu(List<String> appliedEvent) {
         Output.message(Output.GIVE_AWAY_MENU);
         Output.giveMenu(appliedEvent);
     }
