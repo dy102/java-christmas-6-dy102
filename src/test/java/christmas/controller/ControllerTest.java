@@ -30,7 +30,7 @@ class ControllerTest extends NsTest {
     @DisplayName("각종 잘못된 입력 형식에 대해 예외를 처리하는지 확인한다.")
     @ParameterizedTest
     @MethodSource("inValidParameters")
-    void ifInvalidDateThrowException(String date, String order) {
+    void ifInvalidInputCatchException(String date, String order) {
         runException(date, order);
         assertThat(output()).contains("[ERROR]");
     }
