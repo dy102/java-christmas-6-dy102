@@ -12,9 +12,9 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class EventManagerTest {
-    @DisplayName("이벤트 할인 금액이 알맞게 저장되는지 확인한다.")
+    @DisplayName("이벤트 할인 금액을 알맞게 처리하는지 확인한다.")
     @Test
-    void checkDiscountAndSave() {//다른메서드도 해야하나?
+    void checkCalculateAllEventPrice() {
         VisitDate visitDate = new VisitDate(3);
         UserMenu userMenu = UserMenu.form(List.of("티본스테이크-1", "바비큐립-1", "초코케이크-2", "제로콜라-1"));
         TotalPrice totalPrice = new TotalPrice();
