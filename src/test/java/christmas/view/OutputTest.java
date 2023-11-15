@@ -1,7 +1,6 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import christmas.option.EventName;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -30,17 +29,27 @@ class OutputTest extends NsTest {
     @Test
     void checkPrice() {
         Output.price(1_000_000_001);
-        assertThat(output()).isEqualTo("1,000,000,001원");
+        assertThat(output()).isEqualTo("""
+                1,000,000,001원""");
+    }
+
+    @DisplayName("증정 메뉴를 알맞게 출력하는지 확인한다.")
+    @Test
+    void checkGiveMenu() {
+        List<String> appliedEvent = List.of("주말 할인", "증정 이벤트");
+        Output.giveMenu(appliedEvent);
+        assertThat(output()).isEqualTo("""
+                샴페인 1개""");
     }
 
     @DisplayName("적용된 이벤트를 알맞게 출력하는지 확인한다.")
     @Test
     void checkAppliedEvent() {
-        EventName eventName = EventName.WEEKEND_EVENT;
         List<String> appliedEvent = List.of("주말 할인");
         List<Integer> appliedPrice = List.of(-2023);
-        Output.appliedEvent(eventName, appliedEvent, appliedPrice);
-        assertThat(output()).isEqualTo("주말 할인: -2,023원");
+        Output.appliedEvents(appliedEvent, appliedPrice);
+        assertThat(output()).isEqualTo("""
+                주말 할인: -2,023원""");
     }
 
 

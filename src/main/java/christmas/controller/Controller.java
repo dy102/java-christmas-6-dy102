@@ -1,17 +1,21 @@
 package christmas.controller;
 
-import christmas.domain.Badge;
-import christmas.domain.EventManager;
-import christmas.domain.EventParameter;
-import christmas.domain.EventPrice;
-import christmas.domain.TotalPrice;
-import christmas.domain.UserMenu;
-import christmas.domain.VisitDate;
-import christmas.option.EventName;
+import christmas.domain.benefit.Badge;
+import christmas.domain.benefit.EventManager;
+import christmas.domain.benefit.EventPrice;
+import christmas.domain.user.TotalPrice;
+import christmas.domain.user.UserInformation;
+import christmas.domain.user.UserMenu;
+import christmas.domain.user.VisitDate;
 import christmas.view.Input;
 import christmas.view.Output;
 
 import java.util.List;
+
+import static christmas.view.Output.APPLIED_EVENT;
+import static christmas.view.Output.GIVE_AWAY_MENU;
+import static christmas.view.Output.ORDER_MENU;
+import static christmas.view.Output.TOTAL_PRICE_BEFORE_DISCOUNT;
 
 public class Controller {
     public void run() {
@@ -21,14 +25,14 @@ public class Controller {
         UserMenu userMenu = inputUserMenu();
         TotalPrice totalPrice = getTotalPrice(userMenu);
 
-        EventParameter eventParameter = new EventParameter(visitDate, userMenu, totalPrice);
-        EventPrice eventPrice = new EventPrice(eventParameter);
+        UserInformation userInformation = new UserInformation(visitDate, userMenu, totalPrice);
+        EventPrice eventPrice = new EventPrice(userInformation);
         applyTotalEvent(eventPrice);
 
         Badge badge = new Badge();
         badge.setName(eventPrice.getTotalEventPrice());
 
-        printEventPreview(eventParameter, eventPrice, badge);
+        printEventPreview(userInformation, eventPrice, badge);
     }
 
     private VisitDate inputVisitDate() {
@@ -53,7 +57,7 @@ public class Controller {
 
     private TotalPrice getTotalPrice(UserMenu userMenu) {
         TotalPrice totalPrice = new TotalPrice();
-        totalPrice.caculateTotalPrice(userMenu.getMenuNames(), userMenu.getMenuCount());
+        totalPrice.caculateTotalPrice(userMenu.getMenuNames().names(), userMenu.getMenuCounts().counts());
         return totalPrice;
     }
 
@@ -62,12 +66,12 @@ public class Controller {
         eventManager.collectAllEvent();
     }
 
-    private void printEventPreview(EventParameter eventParameter, EventPrice eventPrice, Badge badge) {
-        int totalPriceBeforeDiscount = eventParameter.totalPrice().price();
-        int totalPriceAfterDiscount = eventParameter.totalPrice().applyDiscount(eventPrice.getDiscountPrice());
+    private void printEventPreview(UserInformation userInformation, EventPrice eventPrice, Badge badge) {
+        int totalPriceBeforeDiscount = userInformation.totalPrice().price();
+        int totalPriceAfterDiscount = userInformation.totalPrice().applyDiscount(eventPrice.getDiscountPrice());
 
-        printIntroduction(eventParameter.visitDate());
-        printOrderMenu(eventParameter.userMenu());
+        printIntroduction(userInformation.visitDate());
+        printOrderMenu(userInformation.userMenu());
         printTotalPriceBeforeDisCount(totalPriceBeforeDiscount);
         printGiveMenu(eventPrice.getAppliedEvent());
         printAppliedEvents(eventPrice.getAppliedEvent(), eventPrice.getAppliedPrice());
@@ -81,34 +85,23 @@ public class Controller {
     }
 
     private void printOrderMenu(UserMenu userMenu) {
-        Output.message(Output.ORDER_MENU);
-        Output.orderMenu(userMenu.getMenuNames(), userMenu.getMenuCount());
+        Output.message(ORDER_MENU);
+        Output.orderMenu(userMenu.getMenuNames().names(), userMenu.getMenuCounts().counts());
     }
 
     private void printTotalPriceBeforeDisCount(int price) {
-        Output.message(Output.TOTAL_PRICE_BEFORE_DISCOUNT);
+        Output.message(TOTAL_PRICE_BEFORE_DISCOUNT);
         Output.price(price);
     }
 
     private void printGiveMenu(List<String> appliedEvent) {
-        Output.message(Output.GIVE_AWAY_MENU);
+        System.out.println(GIVE_AWAY_MENU);
         Output.giveMenu(appliedEvent);
     }
 
     private void printAppliedEvents(List<String> appliedEvent, List<Integer> appliedPrice) {
-        Output.message(Output.APPLIED_EVENT);
-
-        if (appliedEvent.isEmpty()) {
-            Output.message("없음");
-            Output.lineBreak();
-            return;
-        }
-
-        EventName[] events = EventName.values();
-        for (EventName event : events) {
-            Output.appliedEvent(event, appliedEvent, appliedPrice);
-        }
-        Output.lineBreak();
+        Output.message(APPLIED_EVENT);
+        Output.appliedEvents(appliedEvent, appliedPrice);
     }
 
     private void printTotalEventPrice(int totalServicePrice) {
