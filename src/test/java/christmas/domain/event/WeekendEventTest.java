@@ -23,7 +23,7 @@ class WeekendEventTest {
         UserInformation userInformation = new UserInformation(visitDate, userMenu, totalPrice);
         WeekendEvent weekendEvent = new WeekendEvent();
 
-        assertThat(weekendEvent.apply(userInformation)).isEqualTo(-4046);
+        assertThat(weekendEvent.apply(userInformation)).isEqualTo(-4_046);
     }
 
     @DisplayName("주말(금,토)이 아닐 때 주말 할인 이벤트가 적용되지 않는지 확인한다.")
