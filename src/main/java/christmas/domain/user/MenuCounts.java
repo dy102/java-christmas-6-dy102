@@ -3,7 +3,7 @@ package christmas.domain.user;
 import java.util.List;
 
 import static christmas.option.Error.ILLEGAL_ORDER;
-import static christmas.option.Error.NOT_OVER_TWENTY;
+import static christmas.option.Error.NOT_OVER_MAXIMUM_COUNT;
 import static christmas.option.EventOption.MAXIMUM_BOUND_COUNT;
 
 public record MenuCounts(List<Integer> counts) {
@@ -27,7 +27,7 @@ public record MenuCounts(List<Integer> counts) {
     private static void validateCounts(List<Integer> menuCount) {
         int totalCount = menuCount.stream().mapToInt(Integer::intValue).sum();
         if (totalCount > MAXIMUM_BOUND_COUNT) {
-            throw new IllegalArgumentException(NOT_OVER_TWENTY.getMessage());
+            throw new IllegalArgumentException(NOT_OVER_MAXIMUM_COUNT.getMessage());
         }
     }
 

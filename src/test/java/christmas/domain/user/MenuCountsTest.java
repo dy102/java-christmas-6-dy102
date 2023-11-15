@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static christmas.option.Error.ILLEGAL_ORDER;
-import static christmas.option.Error.NOT_OVER_TWENTY;
+import static christmas.option.Error.NOT_OVER_MAXIMUM_COUNT;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class MenuCountsTest {
@@ -23,6 +23,6 @@ class MenuCountsTest {
     void validateCounts() {
         assertThatThrownBy(() -> new MenuCounts(List.of(19, 2)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(NOT_OVER_TWENTY.getMessage());
+                .hasMessage(NOT_OVER_MAXIMUM_COUNT.getMessage());
     }
 }
