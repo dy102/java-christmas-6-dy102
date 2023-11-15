@@ -37,5 +37,6 @@ public enum EventBundle {
                 .filter(v -> event.getClass() == v.event.getClass())
                 .findFirst()
                 .orElseThrow(() -> new NullPointerException("존재하지 않는 이벤트 클래스입니다."));
+        //개발자의 실수로 일어날 수 있는 오류를 명시하기 위해 예외를 던지도록 함.
     }
 }

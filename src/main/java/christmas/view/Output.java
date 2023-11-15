@@ -50,7 +50,7 @@ public class Output {
     }
 
     public static void giveMenu(List<String> appliedEvent) {
-        if (appliedEvent.contains(GIVE_AWAY_EVENT.getName())) { //상수관리필요
+        if (appliedEvent.contains(GIVE_AWAY_EVENT.getName())) {
             System.out.println("샴페인 1개");
             lineBreak();
             return;
