@@ -10,6 +10,7 @@ import static christmas.option.Error.ILLEGAL_ORDER;
 public class Converter {
     private static final String DELIMITER_COMMA = ",";
     private static final String DELIMITER_DASH = "-";
+    private static final int COUNT_POSITION_IN_LIST = 1;
 
     private Converter() {
     }
@@ -42,7 +43,7 @@ public class Converter {
                 throw new IllegalArgumentException(ILLEGAL_ORDER.getMessage());
             }
             try {
-                menuCount.add(Integer.parseInt(splitOrder.get(1)));
+                menuCount.add(Integer.parseInt(splitOrder.get(COUNT_POSITION_IN_LIST)));
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                 throw new IllegalArgumentException(ILLEGAL_ORDER.getMessage());
             }
