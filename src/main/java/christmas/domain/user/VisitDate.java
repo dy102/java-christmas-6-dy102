@@ -10,7 +10,7 @@ public record VisitDate(int date) {
     }
 
     private void validate(int visitDate) {
-        if (visitDate < START_DATE || visitDate > END_DATE) {
+        if (visitDate < START_DATE.getNumber() || visitDate > END_DATE.getNumber()) {
             throw new IllegalArgumentException(ILLEGAL_DATE.getMessage());
         }
     }

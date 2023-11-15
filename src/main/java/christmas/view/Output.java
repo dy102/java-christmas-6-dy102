@@ -13,7 +13,7 @@ public class Output {
     public static final String APPLIED_EVENT = "<혜택 내역>";
     public static final String TOTAL_EVENT_PRICE = "<총혜택 금액>";
     public static final String TOTAL_PRICE_AFTER_DISCOUNT = "<할인 후 예상 결제 금액>";
-    public static final String BADGE = "<" + EVENT_MONTH + "월 이벤트 배지>";
+    public static final String BADGE = "<" + EVENT_MONTH.getNumber() + "월 이벤트 배지>";
 
     private static final DecimalFormat format = new DecimalFormat("###,###,###,###");
 

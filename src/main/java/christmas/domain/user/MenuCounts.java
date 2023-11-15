@@ -26,7 +26,7 @@ public record MenuCounts(List<Integer> counts) {
 
     private static void validateCounts(List<Integer> menuCount) {
         int totalCount = menuCount.stream().mapToInt(Integer::intValue).sum();
-        if (totalCount > MAXIMUM_BOUND_COUNT) {
+        if (totalCount > MAXIMUM_BOUND_COUNT.getNumber()) {
             throw new IllegalArgumentException(NOT_OVER_MAXIMUM_COUNT.getMessage());
         }
     }

@@ -24,8 +24,8 @@ public class Controller {
         VisitDate visitDate = inputVisitDate();
         UserMenu userMenu = inputUserMenu();
         TotalPrice totalPrice = getTotalPrice(userMenu);
-
         UserInformation userInformation = new UserInformation(visitDate, userMenu, totalPrice);
+
         EventPrice eventPrice = new EventPrice(userInformation);
         applyTotalEvent(eventPrice);
 

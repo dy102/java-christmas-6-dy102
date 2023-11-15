@@ -23,7 +23,7 @@ public class EventPrice {
     }
 
     public void calculateDiscountPrice(Event event) {
-        if (userInformation.totalPrice().price() < MINIMUM_PRICE_APPLY_EVENT) {
+        if (userInformation.totalPrice().price() < MINIMUM_PRICE_APPLY_EVENT.getNumber()) {
             return;
         }
 
