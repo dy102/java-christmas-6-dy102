@@ -38,6 +38,9 @@ public class Converter {
         List<Integer> menuCount = new ArrayList<>();
         for (String order : orders) {
             List<String> splitOrder = Arrays.stream(order.split(DELIMITER_DASH)).toList();
+            if (splitOrder.size() > 2) {
+                throw new IllegalArgumentException(ILLEGAL_ORDER.getMessage());
+            }
             try {
                 menuCount.add(Integer.parseInt(splitOrder.get(1)));
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
