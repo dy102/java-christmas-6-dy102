@@ -45,15 +45,15 @@ class ConverterTest {
 
     @DisplayName("주문 정보의 구분자를 기준으로 메뉴 개수 List를 알맞게 생성하는지 확인한다.")
     @Test
-    void convertOrderOtMenuCount() {
-        assertThat(Converter.orderToMenuCount(List.of("양송이수프-1", "제로콜라-2"))).isEqualTo(List.of(1, 2));
+    void convertOrderOtMenuCounts() {
+        assertThat(Converter.orderToMenuCounts(List.of("양송이수프-1", "제로콜라-2"))).isEqualTo(List.of(1, 2));
     }
 
     @DisplayName("잘못된 값을 입력했을 때 예외가 발생한다.")
     @MethodSource("inValidParameters")
     @ParameterizedTest
     void inputIllegalListThrowException(List<String> orders) {
-        assertThatThrownBy(() -> Converter.orderToMenuCount(orders))
+        assertThatThrownBy(() -> Converter.orderToMenuCounts(orders))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ILLEGAL_ORDER.getMessage());
     }

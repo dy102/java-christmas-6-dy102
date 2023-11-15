@@ -17,7 +17,7 @@ public class UserMenu {
 
     public static UserMenu form(List<String> orders) {
         List<String> menuNames = Converter.orderToMenuNames(orders);
-        List<Integer> menuCount = Converter.orderToMenuCount(orders);
+        List<Integer> menuCount = Converter.orderToMenuCounts(orders);
         return new UserMenu(menuNames, menuCount);
     }
 

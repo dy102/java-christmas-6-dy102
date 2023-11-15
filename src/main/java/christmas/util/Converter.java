@@ -34,7 +34,7 @@ public class Converter {
         return menuNames;
     }
 
-    public static List<Integer> orderToMenuCount(List<String> orders) {
+    public static List<Integer> orderToMenuCounts(List<String> orders) {
         List<Integer> menuCount = new ArrayList<>();
         for (String order : orders) {
             List<String> splitOrder = Arrays.stream(order.split(DELIMITER_DASH)).toList();
