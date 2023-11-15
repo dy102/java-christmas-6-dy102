@@ -16,7 +16,7 @@ class WeekendEventTest {
     @Test
     void applyEvent() {
         VisitDate visitDate = new VisitDate(23);
-        UserMenu userMenu = UserMenu.form(List.of("양송이수프-1", "제로콜라-1", "크리스마스파스타-2"));
+        UserMenu userMenu = UserMenu.from(List.of("양송이수프-1", "제로콜라-1", "크리스마스파스타-2"));
         TotalPrice totalPrice = new TotalPrice();
         totalPrice.caculateTotalPrice(userMenu.getMenuNames().names(), userMenu.getMenuCounts().counts());
 
@@ -30,7 +30,7 @@ class WeekendEventTest {
     @Test
     void unApplyEvent() {
         VisitDate visitDate = new VisitDate(24);
-        UserMenu userMenu = UserMenu.form(List.of("양송이수프-1", "제로콜라-1", "크리스마스파스타-2"));
+        UserMenu userMenu = UserMenu.from(List.of("양송이수프-1", "제로콜라-1", "크리스마스파스타-2"));
         TotalPrice totalPrice = new TotalPrice();
         totalPrice.caculateTotalPrice(userMenu.getMenuNames().names(), userMenu.getMenuCounts().counts());
 

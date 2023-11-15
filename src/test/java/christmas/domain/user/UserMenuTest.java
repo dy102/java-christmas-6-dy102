@@ -12,7 +12,7 @@ class UserMenuTest {
     @Test
     void checkUserMenuForm() {
         List<String> orders = List.of("양송이수프-1", "제로콜라-2", "크리스마스파스타-1");
-        UserMenu userMenu = UserMenu.form(orders);
+        UserMenu userMenu = UserMenu.from(orders);
         assertThat(userMenu.getMenuNames().names()).isEqualTo(List.of("양송이수프", "제로콜라", "크리스마스파스타"));
         assertThat(userMenu.getMenuCounts().counts()).isEqualTo(List.of(1, 2, 1));
     }
@@ -21,7 +21,7 @@ class UserMenuTest {
     @Test
     void checkCountDessert() {
         List<String> orders = List.of("티본스테이크-2", "양송이수프-1", "아이스크림-2", "초코케이크-1", "크리스마스파스타-1");
-        UserMenu userMenu = UserMenu.form(orders);
+        UserMenu userMenu = UserMenu.from(orders);
         assertThat(userMenu.countDessert()).isEqualTo(3);
         assertThat(userMenu.countMain()).isEqualTo(3);
     }

@@ -11,7 +11,7 @@ class TotalPriceTest {
     @DisplayName("주문 메뉴를 이용해서 총금액을 알맞게 계산하는지 확인한다.")
     @Test
     void checkCalculateTotalPrice() {
-        UserMenu userMenu = UserMenu.form(List.of("양송이수프-1", "제로콜라-2", "크리스마스파스타-1"));
+        UserMenu userMenu = UserMenu.from(List.of("양송이수프-1", "제로콜라-2", "크리스마스파스타-1"));
         TotalPrice totalPrice = new TotalPrice();
         totalPrice.caculateTotalPrice(userMenu.getMenuNames().names(), userMenu.getMenuCounts().counts());
         assertThat(totalPrice.price()).isEqualTo(37_000);
@@ -20,7 +20,7 @@ class TotalPriceTest {
     @DisplayName("할인 금액이 적용되는지 확인한다.")
     @Test
     void checkApplyDiscount() {
-        UserMenu userMenu = UserMenu.form(List.of("양송이수프-1", "제로콜라-2", "크리스마스파스타-1"));
+        UserMenu userMenu = UserMenu.from(List.of("양송이수프-1", "제로콜라-2", "크리스마스파스타-1"));
         TotalPrice totalPrice = new TotalPrice();
         totalPrice.caculateTotalPrice(userMenu.getMenuNames().names(), userMenu.getMenuCounts().counts());
         totalPrice.applyDiscount(-7_000);

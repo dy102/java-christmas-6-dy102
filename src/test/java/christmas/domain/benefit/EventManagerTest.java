@@ -16,7 +16,7 @@ class EventManagerTest {
     @Test
     void checkCalculateAllEventPrice() {
         VisitDate visitDate = new VisitDate(3);
-        UserMenu userMenu = UserMenu.form(List.of("티본스테이크-1", "바비큐립-1", "초코케이크-2", "제로콜라-1"));
+        UserMenu userMenu = UserMenu.from(List.of("티본스테이크-1", "바비큐립-1", "초코케이크-2", "제로콜라-1"));
         TotalPrice totalPrice = new TotalPrice();
         totalPrice.caculateTotalPrice(userMenu.getMenuNames().names(), userMenu.getMenuCounts().counts());
 

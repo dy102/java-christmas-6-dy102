@@ -48,7 +48,7 @@ public class Controller {
     private UserMenu inputUserMenu() {
         while (true) {
             try {
-                return UserMenu.form(Input.userMenu());
+                return UserMenu.from(Input.userMenu());
             } catch (IllegalArgumentException e) {
                 Output.error(e);
             }
