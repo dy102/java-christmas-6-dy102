@@ -1,4 +1,4 @@
-package christmas.domain;
+package christmas.domain.user;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,7 @@ class TotalPriceTest {
     void checkCalculateTotalPrice() {
         UserMenu userMenu = UserMenu.form(List.of("양송이수프-1", "제로콜라-2", "크리스마스파스타-1"));
         TotalPrice totalPrice = new TotalPrice();
-        totalPrice.caculateTotalPrice(userMenu.getMenuNames(), userMenu.getMenuCount());
+        totalPrice.caculateTotalPrice(userMenu.getMenuNames().names(), userMenu.getMenuCounts().counts());
         assertThat(totalPrice.price()).isEqualTo(37_000);
     }
 
@@ -22,7 +22,7 @@ class TotalPriceTest {
     void checkApplyDiscount() {
         UserMenu userMenu = UserMenu.form(List.of("양송이수프-1", "제로콜라-2", "크리스마스파스타-1"));
         TotalPrice totalPrice = new TotalPrice();
-        totalPrice.caculateTotalPrice(userMenu.getMenuNames(), userMenu.getMenuCount());
+        totalPrice.caculateTotalPrice(userMenu.getMenuNames().names(), userMenu.getMenuCounts().counts());
         totalPrice.applyDiscount(-7_000);
         assertThat(totalPrice.price()).isEqualTo(30_000);
     }

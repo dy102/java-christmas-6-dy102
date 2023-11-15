@@ -1,4 +1,4 @@
-package christmas.domain;
+package christmas.domain.benefit;
 
 public class Badge {
     private String name = "없음";
@@ -7,7 +7,7 @@ public class Badge {
         return name;
     }
 
-    public void setName(int totalServicePrice) {
+    public void setName(int totalServicePrice) { //set해도되나?
         if (totalServicePrice <= -20000) {
             name = "산타";
             return;

@@ -1,5 +1,9 @@
-package christmas.domain;
+package christmas.domain.benefit;
 
+import christmas.domain.user.TotalPrice;
+import christmas.domain.user.UserInformation;
+import christmas.domain.user.UserMenu;
+import christmas.domain.user.VisitDate;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,10 +18,10 @@ class EventManagerTest {
         VisitDate visitDate = new VisitDate(3);
         UserMenu userMenu = UserMenu.form(List.of("티본스테이크-1", "바비큐립-1", "초코케이크-2", "제로콜라-1"));
         TotalPrice totalPrice = new TotalPrice();
-        totalPrice.caculateTotalPrice(userMenu.getMenuNames(), userMenu.getMenuCount());
+        totalPrice.caculateTotalPrice(userMenu.getMenuNames().names(), userMenu.getMenuCounts().counts());
 
-        EventParameter eventParameter = new EventParameter(visitDate, userMenu, totalPrice);
-        EventPrice eventPrice = new EventPrice(eventParameter);
+        UserInformation userInformation = new UserInformation(visitDate, userMenu, totalPrice);
+        EventPrice eventPrice = new EventPrice(userInformation);
         EventManager eventManager = new EventManager(eventPrice);
 
         eventManager.collectAllEvent();
