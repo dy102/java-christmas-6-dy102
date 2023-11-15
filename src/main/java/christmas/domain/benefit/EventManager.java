@@ -3,11 +3,10 @@ package christmas.domain.benefit;
 import christmas.domain.event.GiveEvent;
 import christmas.option.EventBundle;
 
-public class EventManager {//클래스명 변경 고려
+public class EventManager {
     private final EventPrice eventPrice;
 
-    public EventManager(EventPrice eventPrice) {//맘에안듬. eventParameter를 필드로 가지고 있지 않은데 이렇게 사용하는건...
-        // static 변환 방식을 고려해봐야겠다.
+    public EventManager(EventPrice eventPrice) {
         this.eventPrice = eventPrice;
     }
 

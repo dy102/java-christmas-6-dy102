@@ -7,7 +7,7 @@ public class Badge {
         return name;
     }
 
-    public void setName(int totalServicePrice) { //set해도되나?
+    public void setName(int totalServicePrice) {
         if (totalServicePrice <= -20000) {
             name = "산타";
             return;
