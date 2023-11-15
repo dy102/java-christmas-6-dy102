@@ -15,7 +15,7 @@ class GiveAwayEventTest {
 
     @DisplayName("일정 금액 이하일때 증정 이벤트가 적용되지 않는지 확인한다.")
     @Test
-    void applyEvent_2() {
+    void UnApplyEvent() {
         GiveAwayEvent giveAwayEvent = new GiveAwayEvent();
         assertThat(giveAwayEvent.isApply(119_999)).isFalse();
     }

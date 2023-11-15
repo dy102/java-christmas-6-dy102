@@ -1,9 +1,9 @@
 package christmas.domain.event;
 
-import christmas.domain.user.UserInformation;
 import christmas.domain.user.TotalPrice;
-import christmas.domain.user.VisitDate;
+import christmas.domain.user.UserInformation;
 import christmas.domain.user.UserMenu;
+import christmas.domain.user.VisitDate;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +28,7 @@ class DDayEventTest {
 
     @DisplayName("기간이 지난 이벤트가 적용되지 않는지 확인한다.")
     @Test
-    void applyEvent_2() {
+    void UnApplyEvent() {
         VisitDate visitDate = new VisitDate(26);
         UserMenu userMenu = UserMenu.form(List.of("양송이수프-1", "제로콜라-1", "크리스마스파스타-1"));
         TotalPrice totalPrice = new TotalPrice();
