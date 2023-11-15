@@ -23,13 +23,16 @@ public class EventPrice {
     }
 
     public void calculateDiscountPrice(Event event) {
-        if (userInformation.totalPrice().price() < MINIMUM_PRICE_APPLY_EVENT) {//어디에 넘길지 고민좀..
+        if (userInformation.totalPrice().price() < MINIMUM_PRICE_APPLY_EVENT) {
             return;
         }
 
         if (event.isApply(userInformation.visitDate().date())) {
-            appliedEvent.add(EventBundle.of(event).getName());
             int price = event.apply(userInformation);
+            if (price == 0) {
+                return;
+            }
+            appliedEvent.add(EventBundle.of(event).getName());
             appliedPrice.add(price);
 
             discountPrice += price;
