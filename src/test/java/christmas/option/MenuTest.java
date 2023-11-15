@@ -22,7 +22,7 @@ import static christmas.option.Menu.MAIN_4;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class MenuTest {
-    @DisplayName("이벤트 클래스를 입력했을 때 해당하는 이벤트명을 반환한다.")
+    @DisplayName("메뉴 이름을 입력했을 때 해당하는 Menu 클래스를 반환한다.")
     @MethodSource("validParameters")
     @ParameterizedTest
     void inputNameAndReturnMenu(String name, Menu menu) {
