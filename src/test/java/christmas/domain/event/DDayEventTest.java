@@ -1,9 +1,9 @@
 package christmas.domain.event;
 
-import christmas.domain.EventParameter;
-import christmas.domain.TotalPrice;
-import christmas.domain.UserMenu;
-import christmas.domain.VisitDate;
+import christmas.domain.user.UserInformation;
+import christmas.domain.user.TotalPrice;
+import christmas.domain.user.VisitDate;
+import christmas.domain.user.UserMenu;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -18,12 +18,12 @@ class DDayEventTest {
         VisitDate visitDate = new VisitDate(25);
         UserMenu userMenu = UserMenu.form(List.of("양송이수프-1", "제로콜라-1", "크리스마스파스타-1"));
         TotalPrice totalPrice = new TotalPrice();
-        totalPrice.caculateTotalPrice(userMenu.getMenuNames(), userMenu.getMenuCount());
+        totalPrice.caculateTotalPrice(userMenu.getMenuNames().names(), userMenu.getMenuCounts().counts());
 
-        EventParameter eventParameter = new EventParameter(visitDate, userMenu, totalPrice);
+        UserInformation userInformation = new UserInformation(visitDate, userMenu, totalPrice);
         DDayEvent dDayEvent = new DDayEvent();
 
-        assertThat(dDayEvent.apply(eventParameter)).isEqualTo(-3400);
+        assertThat(dDayEvent.apply(userInformation)).isEqualTo(-3400);
     }
 
     @DisplayName("기간이 지난 이벤트가 적용되지 않는지 확인한다.")
@@ -32,11 +32,11 @@ class DDayEventTest {
         VisitDate visitDate = new VisitDate(26);
         UserMenu userMenu = UserMenu.form(List.of("양송이수프-1", "제로콜라-1", "크리스마스파스타-1"));
         TotalPrice totalPrice = new TotalPrice();
-        totalPrice.caculateTotalPrice(userMenu.getMenuNames(), userMenu.getMenuCount());
+        totalPrice.caculateTotalPrice(userMenu.getMenuNames().names(), userMenu.getMenuCounts().counts());
 
-        EventParameter eventParameter = new EventParameter(visitDate, userMenu, totalPrice);
+        UserInformation userInformation = new UserInformation(visitDate, userMenu, totalPrice);
         DDayEvent dDayEvent = new DDayEvent();
 
-        assertThat(dDayEvent.apply(eventParameter)).isZero();
+        assertThat(dDayEvent.apply(userInformation)).isZero();
     }
 }

@@ -1,6 +1,6 @@
 package christmas.domain.event;
 
-import christmas.domain.EventParameter;
+import christmas.domain.user.UserInformation;
 
 import java.util.List;
 
@@ -9,9 +9,9 @@ public class WeekendEvent implements Event {
             List.of(1, 2, 8, 9, 15, 16, 22, 23, 29, 30);
 
     @Override
-    public int apply(EventParameter eventParameter) {
-        if (isApply(eventParameter.visitDate().date())) {
-            return (-1) * eventParameter.userMenu().countMain() * 2023;
+    public int apply(UserInformation userInformation) {
+        if (isApply(userInformation.visitDate().date())) {
+            return (-1) * userInformation.userMenu().countMain() * 2023;
         }
         return 0;
     }

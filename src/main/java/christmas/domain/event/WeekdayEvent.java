@@ -1,6 +1,6 @@
 package christmas.domain.event;
 
-import christmas.domain.EventParameter;
+import christmas.domain.user.UserInformation;
 
 import java.util.List;
 
@@ -13,9 +13,9 @@ public class WeekdayEvent implements Event {
                     31);
 
     @Override
-    public int apply(EventParameter eventParameter) {
-        if (isApply(eventParameter.visitDate().date())) {
-            return (-1) * eventParameter.userMenu().countDessert() * 2023;
+    public int apply(UserInformation userInformation) {
+        if (isApply(userInformation.visitDate().date())) {
+            return (-1) * userInformation.userMenu().countDessert() * 2023;
         }
         return 0;
     }

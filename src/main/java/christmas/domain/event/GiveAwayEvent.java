@@ -1,11 +1,11 @@
 package christmas.domain.event;
 
-import christmas.domain.EventParameter;
+import christmas.domain.user.UserInformation;
 
 public class GiveAwayEvent implements Event, GiveEvent {
 
-    public int apply(EventParameter eventParameter) {
-        if (isApply(eventParameter.totalPrice().price())) {
+    public int apply(UserInformation userInformation) {
+        if (isApply(userInformation.totalPrice().price())) {
             return (-1) * 25000;
         }
         return 0;

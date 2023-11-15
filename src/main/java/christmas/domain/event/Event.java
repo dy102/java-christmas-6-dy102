@@ -1,10 +1,10 @@
 package christmas.domain.event;
 
-import christmas.domain.EventParameter;
+import christmas.domain.user.UserInformation;
 
 public interface Event {
 
     boolean isApply(int number);
 
-    int apply(EventParameter eventParameter);
+    int apply(UserInformation userInformation);
 }
