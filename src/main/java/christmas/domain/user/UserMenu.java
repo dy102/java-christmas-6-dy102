@@ -1,7 +1,7 @@
 package christmas.domain.user;
 
 import christmas.option.Menu;
-import christmas.view.Converter;
+import christmas.util.Converter;
 
 import java.util.List;
 import java.util.stream.IntStream;
