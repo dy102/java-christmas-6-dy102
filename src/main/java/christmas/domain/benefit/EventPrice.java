@@ -2,11 +2,13 @@ package christmas.domain.benefit;
 
 import christmas.domain.event.Event;
 import christmas.domain.user.UserInformation;
-import christmas.option.EventName;
+import christmas.option.EventBundle;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import static christmas.option.EventOption.MINIMUM_PRICE_APPLY_EVENT;
 
 public class EventPrice {
     private final UserInformation userInformation;
@@ -21,12 +23,12 @@ public class EventPrice {
     }
 
     public void calculateDiscountPrice(Event event) {
-        if (userInformation.totalPrice().price() < 10000) {//어디에 넘길지 고민좀..
+        if (userInformation.totalPrice().price() < MINIMUM_PRICE_APPLY_EVENT) {//어디에 넘길지 고민좀..
             return;
         }
 
         if (event.isApply(userInformation.visitDate().date())) {
-            appliedEvent.add(EventName.of(event).getName());
+            appliedEvent.add(EventBundle.of(event).getName());
             int price = event.apply(userInformation);
             appliedPrice.add(price);
 
@@ -36,7 +38,7 @@ public class EventPrice {
 
     public void calculateServicePrice(Event event) {
         if (event.isApply(userInformation.totalPrice().price())) {
-            appliedEvent.add(EventName.of(event).getName());
+            appliedEvent.add(EventBundle.of(event).getName());
             int price = event.apply(userInformation);
             appliedPrice.add(price);
 

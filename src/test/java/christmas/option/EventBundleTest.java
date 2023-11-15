@@ -13,19 +13,19 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static christmas.option.EventName.D_DAY_EVENT;
-import static christmas.option.EventName.GIVE_AWAY_EVENT;
-import static christmas.option.EventName.SPECIAL_EVENT;
-import static christmas.option.EventName.WEEKDAY_EVENT;
-import static christmas.option.EventName.WEEKEND_EVENT;
+import static christmas.option.EventBundle.D_DAY_EVENT;
+import static christmas.option.EventBundle.GIVE_AWAY_EVENT;
+import static christmas.option.EventBundle.SPECIAL_EVENT;
+import static christmas.option.EventBundle.WEEKDAY_EVENT;
+import static christmas.option.EventBundle.WEEKEND_EVENT;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class EventNameTest {
+class EventBundleTest {
     @DisplayName("이벤트 클래스를 입력했을 때 해당하는 이벤트명을 반환한다.")
     @MethodSource("validParameters")
     @ParameterizedTest
     void inputEventAndReturnEventName(Event eventInstance, String eventName) {
-        assertThat(EventName.of(eventInstance).getName()).isEqualTo(eventName);
+        assertThat(EventBundle.of(eventInstance).getName()).isEqualTo(eventName);
     }
 
     static Stream<Arguments> validParameters() {

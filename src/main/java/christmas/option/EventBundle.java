@@ -9,7 +9,7 @@ import christmas.domain.event.WeekendEvent;
 
 import java.util.Arrays;
 
-public enum EventName {
+public enum EventBundle {
     WEEKDAY_EVENT("평일 할인", new WeekdayEvent()),
     WEEKEND_EVENT("주말 할인", new WeekendEvent()),
     D_DAY_EVENT("크리스마스 디데이 할인", new DDayEvent()),
@@ -19,7 +19,7 @@ public enum EventName {
     private final String name;
     private final Event event;
 
-    private EventName(String name, Event event) {
+    private EventBundle(String name, Event event) {
         this.name = name;
         this.event = event;
     }
@@ -32,7 +32,7 @@ public enum EventName {
         return event;
     }
 
-    public static EventName of(Event event) {
+    public static EventBundle of(Event event) {
         return Arrays.stream(values())
                 .filter(v -> event.getClass() == v.event.getClass())
                 .findFirst()

@@ -1,7 +1,7 @@
 package christmas.domain.benefit;
 
 import christmas.domain.event.GiveEvent;
-import christmas.option.EventName;
+import christmas.option.EventBundle;
 
 public class EventManager {//클래스명 변경 고려
     private final EventPrice eventPrice;
@@ -12,13 +12,13 @@ public class EventManager {//클래스명 변경 고려
     }
 
     public void collectAllEvent() {
-        EventName[] events = EventName.values();
-        for (EventName event : events) {
+        EventBundle[] events = EventBundle.values();
+        for (EventBundle event : events) {
             calculatePrice(event);
         }
     }
 
-    private void calculatePrice(EventName event) {
+    private void calculatePrice(EventBundle event) {
         if (event.getEvent() instanceof GiveEvent) {
             eventPrice.calculateServicePrice(event.getEvent());
             return;

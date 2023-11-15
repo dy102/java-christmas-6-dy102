@@ -3,7 +3,7 @@ package christmas.view;
 import java.text.DecimalFormat;
 import java.util.List;
 
-import static christmas.option.EventName.GIVE_AWAY_EVENT;
+import static christmas.option.EventBundle.GIVE_AWAY_EVENT;
 import static christmas.option.EventOption.EVENT_MONTH;
 
 public class Output {
