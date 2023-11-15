@@ -1,20 +1,18 @@
-package christmas.domain;
+package christmas.domain.user;
 
 import christmas.option.Menu;
-import christmas.validator.UserMenuValidator;
 import christmas.view.Converter;
 
 import java.util.List;
 import java.util.stream.IntStream;
 
 public class UserMenu {
-    private final List<String> menuNames;
-    private final List<Integer> menuCount;
+    private final MenuNames menuNames;
+    private final MenuCounts menuCounts;
 
-    private UserMenu(List<String> menuNames, List<Integer> menuCount) {
-        UserMenuValidator.check(menuNames, menuCount);
-        this.menuNames = menuNames;
-        this.menuCount = menuCount;
+    private UserMenu(List<String> menuNames, List<Integer> menuCounts) {
+        this.menuNames = new MenuNames(menuNames);
+        this.menuCounts = new MenuCounts(menuCounts);
     }
 
     public static UserMenu form(List<String> orders) {
@@ -27,22 +25,22 @@ public class UserMenu {
     public int countDessert() {
         return IntStream.range(0, menuNames.size())
                 .filter(i -> Menu.of(menuNames.get(i)).getType().equals("디저트"))
-                .map(menuCount::get)
+                .map(menuCounts::get)
                 .sum();
     }
 
     public int countMain() {
         return IntStream.range(0, menuNames.size())
                 .filter(i -> Menu.of(menuNames.get(i)).getType().equals("메인"))
-                .map(menuCount::get)
+                .map(menuCounts::get)
                 .sum();
     }
 
-    public List<String> getMenuNames() {
+    public MenuNames getMenuNames() {
         return menuNames;
     }
 
-    public List<Integer> getMenuCount() {
-        return menuCount;
+    public MenuCounts getMenuCounts() {
+        return menuCounts;
     }
 }
